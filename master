@@ -1,0 +1,38 @@
+#import the data 
+#import the package
+import tensorflow as tf
+import numpy as np
+
+#adding data
+c = np.array([-40, -10,  0,  8, 15, 22,  38])
+f = np.array([-40, 14, 32, 46, 59, 72, 100])
+
+#printing the values in c and f
+for x in c:
+  print(x)
+
+for x in f:
+  print(x)
+
+#assigned data 
+#got the package as well
+
+model = tf.keras.Sequential([
+  tf.keras.layers.Dense(units=1, input_shape=[1])
+])
+
+model.compile(loss='mean_squared_error',
+              optimizer=tf.keras.optimizers.Adam(0.1))
+
+history = model.fit(c, f, epochs=500, verbose=False)
+print("Finished training the model")
+
+
+import matplotlib.pyplot as plt
+plt.xlabel('Epoch Number')
+plt.ylabel("Loss Magnitude")
+plt.plot(history.history['loss'])
+
+print(model.predict([100.0]))
+
+print("These are the layer variables: {}".format(l0.get_weights()))
